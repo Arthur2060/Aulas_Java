@@ -2,7 +2,7 @@ package Aula_5;
 
 import java.util.Scanner;
 
-public class Pedra_papel_Tesoura {
+public class Pedra_Papel_Tesoura {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
@@ -29,8 +29,11 @@ public class Pedra_papel_Tesoura {
 
         System.out.println("ヽ(´ー`)人(´∇｀)人(`Д´)ノヽ(´ー`)人(´∇｀)人(`Д´)ノ");
         System.out.println("Bem-vindo, escolha uma das opções a seguir:");
+
         System.out.println("(☞ﾟヮﾟ)☞[1]\n" + pedra);
+
         System.out.println("(☞ﾟヮﾟ)☞[2]\n" + papel);
+
         System.out.println("(☞ﾟヮﾟ)☞[3]\n" + tesoura);
 
         byte entrada = teclado.nextByte();
