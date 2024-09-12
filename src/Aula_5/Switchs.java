@@ -9,18 +9,20 @@ public class Switchs {
         String cor_sem = teclado.nextLine();
 
         switch (cor_sem){
-            case "Vermelho":
+            case "Vermelho", "vermelho":
                 System.out.println("Pare");
                 break;
 
-            case "Amarelo":
+            case "Amarelo", "amarelo":
                 System.out.println("Desacelere");
                 break;
 
-            case "Verde":
+            case "Verde", "verde":
                 System.out.println("Continue");
                 break;
 
+            default:
+                System.out.println("Cor invalida");
         }
     }
 }
