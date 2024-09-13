@@ -14,10 +14,12 @@ public class Calculo_de_comissao {
         if (vendas <= 1000){
             comissao = 5 * (vendas / 100);
             System.out.printf("Ok, sua comissão será de %.2fR$", comissao);
-        }else if (vendas > 1000 || vendas <= 5000){
+        }
+        else if (vendas > 1000 || vendas <= 5000){
             comissao = 10 * (vendas / 100);
             System.out.printf("Muito bem, sua comissão será de %.2fR$", comissao);
-        }else if (vendas > 5000){
+        }
+        else if (vendas > 5000){
             comissao = 15 * (vendas / 100);
             System.out.printf("Perfeito, sua comissão será de %.2fR$", comissao);
         }
