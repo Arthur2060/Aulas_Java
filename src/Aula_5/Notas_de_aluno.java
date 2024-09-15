@@ -13,10 +13,10 @@ public class Notas_de_aluno {
         System.out.print("Digite a nota: ");
         byte nota = teclado.nextByte();
 
-        if (nota > 7){
+        if (nota >= 7){
             System.out.println("Aluno aprovado");
         }
-        else if(nota <= 7 && nota >= 5){
+        else if(nota < 7 && nota >= 5){
             System.out.println("Passou para a recuperação");
         }
         else{
