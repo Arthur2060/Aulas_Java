@@ -15,14 +15,19 @@ public class Contador_de_casas {
 
         if (n > 10 && n < 100){
             System.out.println("Este numero tem 2 digitos");
+
         } else if (n > 100 && n < 1000){
             System.out.println("Este numero tem 3 digitos");
+
         } else if (n > 1000 && n < 10000){
             System.out.println("Este numero tem 4 digitos");
+
         } else if (n > 10000 && n < 100000){
             System.out.println("Este numero tem 5 digitos");
+
         } else if (n > 100000 && n < 1000000){
             System.out.println("Este numero tem 6 digitos");
+
         }else{
             System.out.println("Este numero possui um unico digito.");
         }
