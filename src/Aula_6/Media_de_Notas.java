@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Media_de_Notas {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        
+
         System.out.print("Digite uma nota: ");
         float n1 = teclado.nextFloat();
 
@@ -22,10 +22,6 @@ public class Media_de_Notas {
         float n5 = teclado.nextFloat();
 
         int c;
-
-        for(c = 1; c <= 5; c++){
-
-        }
 
     }
 }

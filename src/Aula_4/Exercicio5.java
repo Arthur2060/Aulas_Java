@@ -1,8 +1,8 @@
-package Aula_5;
+package Aula_4;
 
 import java.util.Scanner;
 
-public class Hora_Extra {
+public class Exercicio5 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 

@@ -1,8 +1,8 @@
-package Aula_5;
+package Aula_4;
 
 import java.util.Scanner;
 
-public class Conversor_de_Moeda {
+public class Exercicio10 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
