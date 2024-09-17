@@ -11,10 +11,10 @@ public class Soma_de_Pares {
 
         while (c <= 100){
             if(c % 2 == 0){
-                System.out.println(c);
-
+                n = n + c;
             }
             c++;
         }
+        System.out.println(n);
     }
 }
