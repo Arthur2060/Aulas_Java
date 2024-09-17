@@ -38,6 +38,8 @@ public class Pedra_Papel_Tesoura {
 
         byte entrada = teclado.nextByte();
 
+        teclado.close();
+
         switch (entrada){
             case 1:
                 System.out.println("    _______\n" +

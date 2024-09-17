@@ -17,6 +17,8 @@ public class Encontre_os_primos {
         System.out.print("número final: ");
         int n2 = teclado.nextInt();
 
+        teclado.close();
+
         int primos = 0;
 
         while (n1 <= n2){

@@ -11,6 +11,8 @@ public class Contador_de_casas {
 
         int n = teclado.nextInt();
 
+        teclado.close();
+
         if (n > 10 && n < 100){
             System.out.println("Este numero tem 2 digitos");
         } else if (n > 100 && n < 1000){

@@ -10,6 +10,8 @@ public class Numero_primo {
         System.out.print("Digite um numero: ");
         int n = teclado.nextInt();
 
+        teclado.close();
+
         int divisivel = 0;
 
         int c;

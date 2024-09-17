@@ -9,6 +9,9 @@ public class Calculo_de_Fatorial {
         System.out.print("Digite o numero a ser calculado: ");
 
         int n = teclado.nextInt();
+
+        teclado.close();
+
         int c = n - 1;
 
         do{

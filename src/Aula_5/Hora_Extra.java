@@ -36,7 +36,7 @@ public class Hora_Extra {
             System.out.println("Ótimo, nenhuma hora a mais para ser " +
                     "contabilizada");
         }
-
+        teclado.close();
     }
 }
 

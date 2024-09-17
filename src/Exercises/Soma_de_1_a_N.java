@@ -11,6 +11,8 @@ public class Soma_de_1_a_N {
         System.out.print("Devo contar até qual numero? ");
         int n = teclado.nextInt();
 
+        teclado.close();
+
         //Variaveis necessárias
         int c;
         int n1 = 0;

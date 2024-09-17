@@ -10,6 +10,8 @@ public class Tabuada {
         System.out.print("Primeiro digite um numero: ");
         float n = teclado.nextFloat();
 
+        teclado.close();
+
         int c;
         for (c = 0; c <= 10; c++){
             System.out.printf("%.2f X %d = %.2f \n", n, c, n*c);//

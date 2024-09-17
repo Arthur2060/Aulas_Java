@@ -8,6 +8,8 @@ public class Switchs {
 
         String cor_sem = teclado.nextLine();
 
+        teclado.close();
+
         switch (cor_sem){
             case "Vermelho", "vermelho":
                 System.out.println("Pare");

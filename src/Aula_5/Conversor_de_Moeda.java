@@ -15,6 +15,8 @@ public class Conversor_de_Moeda {
         System.out.print("Devo converter para qual moeda? [Dolar, Euro, Libra Egipcia]: ");
         String conv = teclado.next();
 
+        teclado.close();
+
         float valorD;
 
         switch (conv){

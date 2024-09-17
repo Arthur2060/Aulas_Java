@@ -22,6 +22,8 @@ public class Ordenador {
         System.out.print("Quer que organizae em ordem crecente [1] ou decrecente [2]?: ");
         int res = teclado.nextInt();
 
+        teclado.close();
+
         int p1 = 0;
         int p2 = 0;
         int p3 = 0;

@@ -11,6 +11,8 @@ public class VerificacaoDeIdade {
 
         byte idade = teclado.nextByte();
 
+        teclado.close();
+
         if (idade > 18){
             System.out.println("Acesso aprovado!");
         }else{

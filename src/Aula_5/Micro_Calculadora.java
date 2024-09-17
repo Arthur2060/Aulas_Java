@@ -17,6 +17,8 @@ public class Micro_Calculadora {
         System.out.print("Qual operação devo fazer? [+,-,/,*]: ");
         String op = teclado.nextLine();
 
+        teclado.close();
+
         switch (op){
 
             case "+":

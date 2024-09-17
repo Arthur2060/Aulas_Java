@@ -9,6 +9,9 @@ public class Primo {
         System.out.print("Digite um numero: ");
 
         int n = teclado.nextInt();
+
+        teclado.close();
+
         int c;
         int divisivel = 0;
 

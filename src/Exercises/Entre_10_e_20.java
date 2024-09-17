@@ -9,6 +9,8 @@ public class Entre_10_e_20 {
         System.out.print("Digite um numero: "); //Recebe o numero a ser comparado
         float n = teclado.nextFloat();
 
+        teclado.close();
+
         if (n >= 10 && n <= 20){ //Efetua a comparação
             System.out.printf("%.2f está entre 10 e 20!", n); //Mostra o resultado
         }else{

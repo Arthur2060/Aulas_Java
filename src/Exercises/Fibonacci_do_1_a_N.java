@@ -12,6 +12,8 @@ public class Fibonacci_do_1_a_N {
         System.out.print("Primeiro digite o limite: ");
         int l = teclado.nextInt();
 
+        teclado.close();
+
         int n1 = 0;
         int n2 = 1;
         int c;

@@ -11,6 +11,8 @@ public class Determinador_de_Turno {
         System.out.print("Digite a hora: ");
         int hora = teclado.nextInt();
 
+        teclado.close();
+
         if (hora >= 5 && hora < 12){
             System.out.println("Você está no horario da manhã");
         }else if (hora >= 12 && hora < 18){

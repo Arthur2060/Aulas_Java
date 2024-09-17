@@ -26,6 +26,7 @@ public class ClassificacaoDeProdutos {
                 default:
                     System.out.println("Apenas numeros de 1 a 3 ou 4 para terminar o processo");
             }
+        teclado.close();
         }
     }
 }

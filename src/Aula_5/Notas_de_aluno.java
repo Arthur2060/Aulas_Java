@@ -13,6 +13,8 @@ public class Notas_de_aluno {
         System.out.print("Digite a nota: ");
         byte nota = teclado.nextByte();
 
+        teclado.close();
+
         if (nota >= 7){
             System.out.println("Aluno aprovado");
         }

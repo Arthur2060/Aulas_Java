@@ -10,6 +10,8 @@ public class Calculo_de_comissao {
         float vendas = teclado.nextFloat();
         System.out.println("R$");
 
+        teclado.close();
+
         float comissao = 0;
         if (vendas <= 1000){
             comissao = 5 * (vendas / 100);

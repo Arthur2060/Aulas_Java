@@ -10,6 +10,8 @@ public class Desconto {
 
         float compra = teclado.nextFloat();
 
+        teclado.close();
+
         if (compra > 100){
             compra = compra * 10;
             compra = compra / 100;
