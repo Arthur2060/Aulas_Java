@@ -1,8 +1,8 @@
-package Exercises;
+package Aula1;
 
 import java.util.Scanner;
 
-public class Fibonacci_do_1_a_N {
+public class Exercicio6 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 

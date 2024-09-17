@@ -1,8 +1,8 @@
-package Exercises;
+package Aula1;
 
 import java.util.Scanner;
 
-public class Encontre_os_primos {
+public class Exercicio9 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 

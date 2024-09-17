@@ -1,29 +1,29 @@
-package Exercises;
+package Aula_5;
 
 import java.util.Scanner;
 
-public class Numero_primo {
+public class Primo {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
-        System.out.println("Este programa vai te dizer se um numero é ou não primo.");
         System.out.print("Digite um numero: ");
+
         int n = teclado.nextInt();
 
         teclado.close();
 
+        int c;
         int divisivel = 0;
 
-        int c;
-        for (c = 1; c < 10; c++){
+        for (c = n; c > 1; c--){
             if (n % c == 0){
-                divisivel ++;
+                divisivel++;
             }
         }
-        if (divisivel == 2){
-            System.out.printf("%d é primo", n);
+        if (divisivel > 1){
+            System.out.println("Este numero não é primo.");
         }else{
-            System.out.printf("%d não é primo", n);
+            System.out.println("Este numero é primo.");
         }
     }
 }

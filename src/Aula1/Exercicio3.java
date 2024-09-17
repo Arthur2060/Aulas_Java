@@ -2,7 +2,7 @@ package Java.Exercises;
 
 import java.util.Scanner;
 
-public class Soma_de_1_a_N {
+public class Exercicio3 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 

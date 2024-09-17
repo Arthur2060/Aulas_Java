@@ -1,4 +1,4 @@
-package Aula_6;
+package Aula_5;
 
 public class Soma_de_Pares {
     public static void main(String[] args) {

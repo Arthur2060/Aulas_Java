@@ -1,8 +1,8 @@
-package Exercises;
+package Aula1;
 
 import java.util.Scanner;
 
-public class Tabuada {
+public class Exercicio5 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 

@@ -1,8 +1,8 @@
-package Exercises;
+package Aula1;
 
 import java.util.Scanner;
 
-public class Entre_10_e_20 {
+public class Exercicio1 {
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in); //Criando comando para ler valores digitados
 
