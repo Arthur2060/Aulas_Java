@@ -18,5 +18,7 @@ public class Exercicio1 {
         System.out.println("idade: " + idade);
         System.out.println("altura: " + altura);
         System.out.println("peso: " + peso);
+
+        teclado.close();
     }
 }
