@@ -16,10 +16,10 @@ public class Exemplo6 {
 
             n = teclado.nextInt();
 
-            if (n % 2 == 0){
+            if (n % 2 == 0) {
                 par++;
 
-            }else{
+            } else {
                 impar++;
 
             }
