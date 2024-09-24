@@ -9,6 +9,8 @@ public class Exercicio9 {
         System.out.print("Digite um numero fracionado: ");
         float pri = teclado.nextFloat();
 
+        teclado.close();
+
         long seg = (long) pri;
 
         double ter = seg;
