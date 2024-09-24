@@ -1,6 +1,6 @@
-package Aula_5;
+package Aula5;
 
-public class Soma_de_Pares {
+public class Exercicio2 {
     public static void main(String[] args) {
         int c = 0;
         int n = 0;

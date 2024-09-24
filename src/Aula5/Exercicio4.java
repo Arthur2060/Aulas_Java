@@ -1,8 +1,8 @@
-package Aula_5;
+package Aula5;
 
 import java.util.Scanner;
 
-public class Primo {
+public class Exercicio4 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
