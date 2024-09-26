@@ -8,7 +8,7 @@ public class Exercicio6 {
 
         int n1 = 0;
         int n2 = 1;
-        int c = 5;
+        int c = 10;
 
 
         while (c > 0){
