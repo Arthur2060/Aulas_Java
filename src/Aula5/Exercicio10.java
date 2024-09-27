@@ -11,21 +11,24 @@ public class Exercicio10 {
         String impar = "Impares: ";
 
         System.out.println("Escreva os numeros");
-        do{
+        do {
             res = teclado.nextInt();
-            if (res < 0){
+            if (res < 0) {
                 break;
             }
-            if (res > 100){
+            if (res > 100) {
                 System.out.println("Numero muito grande");
                 continue;
-            }else if(res % 2 == 0){
+            } else if (res % 2 == 0) {
                 par += res + ", ";
-            }else{
+            } else {
                 impar += res + ", ";
             }
 
-        }while(res > 0);
+        } while (res > 0);
+
+        par = par.substring(0, par.length() - 2);
+        impar = impar.substring(0, impar.length() - 2);
 
         System.out.println(par);
         System.out.println(impar);
