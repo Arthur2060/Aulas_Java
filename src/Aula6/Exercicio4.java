@@ -20,5 +20,6 @@ public class Exercicio4{
         n = n / notas.length;
 
         System.out.println("A média das notas é " + n);
+        teclado.close();
     }
 }
