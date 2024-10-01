@@ -29,7 +29,7 @@ public class Desafio {
 
         for (int i = 0; i < cadastro.length; i++) {
             for (int j = 0; j < cadastro[i].length; j++) {
-                System.out.print(cadastro[i][j] + " ");
+                System.out.print(cadastro[i][j] + "\t");
             }
             System.out.println();
         }
