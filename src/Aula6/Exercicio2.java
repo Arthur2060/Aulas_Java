@@ -24,5 +24,6 @@ public class Exercicio2 {
         }else{
             System.out.println("Essa letra não está no vetor.");
         }
+        teclado.close();
     }
 }

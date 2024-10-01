@@ -21,5 +21,6 @@ public class Exercicio1 {
         }
         System.out.println();
         System.out.printf("A soma dá = %d", resp);
+        teclado.close();
     }
 }
