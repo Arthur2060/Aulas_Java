@@ -20,5 +20,6 @@ public class Exercicio6{
             }
             System.out.println(")");
         }
+        teclado.close();
     }
 }
