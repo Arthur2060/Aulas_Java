@@ -14,7 +14,7 @@ public class Exercicio4 {
         farenheight = conversor(celsius);
 
         System.out.println(celsius + "° equivale a " + farenheight + "° em farenheight");
-
+        teclado.close();
     }
     static double conversor(double c){
         return c * 18 + 32;
