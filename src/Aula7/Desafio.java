@@ -8,10 +8,9 @@ public class Desafio {
         String[][] cadastros = new String[10][4];
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
 
-        cadastros[0][0] = colunas[0];
-        cadastros[0][1] = colunas[1];
-        cadastros[0][2] = colunas[2];
-        cadastros[0][3] = colunas[3];
+        for (int i = 0; i < cadastros[0].length; i++) {
+            cadastros[0][i] = colunas[i];
+        }
 
         byte res = 0;
 
@@ -20,6 +19,7 @@ public class Desafio {
                     "(No momento só posso cadastrar até 10 usuários)");
             System.out.println("X                   Cadastrar[1]                        x");
             System.out.println("X                   Exibir cadastros[2]                 x");
+            System.out.println("X                   Atualizar usuário[3]                x");
 
             res = teclado.nextByte();
 
@@ -45,11 +45,24 @@ public class Desafio {
         for (int i = 1; i < matriz.length; i++) {
             if (matriz[i][0] == null) {
                 return i;
-            } else {
-                continue;
             }
         }
         return 11;
+    }
+
+    static int localizarUsuario(String[][] matriz, String info){
+        int n = 0;
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][j].equals(info)){
+                    n = i;
+                    break;
+                }
+            }
+        }
+        System.out.println(n);
+        return n;
     }
 
     static void cadastrar(String[][] matriz, String[] colunas){
@@ -62,7 +75,7 @@ public class Desafio {
             usuario[i] = teclado.nextLine();
         }
 
-        for (int i = 0; i < matriz[linha].length; i++) {
+        for(int i = 0; i < matriz[linha].length; i++) {
             matriz[linha][i] = usuario[i];
         }
     }
@@ -79,18 +92,11 @@ public class Desafio {
     static void atualizarUsuario(String[][] matriz, String[] colunas){
         Scanner teclado = new Scanner(System.in);
         String info;
-        int linha = 0;
 
         System.out.print("Digite uma informação para pesquisar: ");
         info = teclado.nextLine();
 
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                if (info.equals(matriz[i][j])){
-                    linha = i;
-                }
-            }
-        }
+        int linha = localizarUsuario(matriz, info);
 
         for (int i = 0; i < matriz[linha].length; i++) {
             System.out.print("Digite o " + colunas[i] + ": ");
