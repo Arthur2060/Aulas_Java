@@ -27,16 +27,22 @@ public class Desafio {
                 case 1:
                     cadastrar(cadastros, colunas);
                     break;
+
                 case 2:
                     exibirCadastros(cadastros);
                     break;
+
+                case 3:
+                    atualizarUsuario(cadastros, colunas);
+                    break;
             }
         }
+
         teclado.close();
     }
 
     static int localizarNull(String[][] matriz) {
-        for (int i = 0; i < matriz.length; i++) {
+        for (int i = 1; i < matriz.length; i++) {
             if (matriz[i][0] == null) {
                 return i;
             } else {
@@ -49,31 +55,46 @@ public class Desafio {
     static void cadastrar(String[][] matriz, String[] colunas){
         Scanner teclado = new Scanner(System.in);
         String[] usuario = new String[4];
+        int linha = localizarNull(matriz);
 
         for (int i = 0; i < usuario.length; i++) {
             System.out.print("Digite o " + colunas[i] + ": ");
             usuario[i] = teclado.nextLine();
         }
 
-        for (int i = 0; i < matriz[localizarNull(matriz)].length; i++) {
-            matriz[localizarNull(matriz)][i] = usuario[i];
+        for (int i = 0; i < matriz[linha].length; i++) {
+            matriz[linha][i] = usuario[i];
         }
     }
 
     static void exibirCadastros(String[][] matriz){
         for(String[] linha : matriz){
             for(String item : linha) {
-                if(item != null) {
-                    System.out.print(item + "\t");
-                }
+                System.out.print(item + "\t");
             }
             System.out.println();
         }
     }
 
-    static void atualizarUsuario(String[][] matriz){
+    static void atualizarUsuario(String[][] matriz, String[] colunas){
         Scanner teclado = new Scanner(System.in);
+        String info;
+        int linha = 0;
 
-        teclado.close();
+        System.out.print("Digite uma informação para pesquisar: ");
+        info = teclado.nextLine();
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (info.equals(matriz[i][j])){
+                    linha = i;
+                }
+            }
+        }
+
+        for (int i = 0; i < matriz[linha].length; i++) {
+            System.out.print("Digite o " + colunas[i] + ": ");
+            matriz[linha][i] = teclado.nextLine();
+        }
     }
 }
