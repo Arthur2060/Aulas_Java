@@ -56,7 +56,7 @@ public class Desafio {
         }
 
         for (int i = 0; i < matriz[localizarNull(matriz)].length; i++) {
-
+            matriz[localizarNull(matriz)][i] = usuario[i];
         }
     }
 
