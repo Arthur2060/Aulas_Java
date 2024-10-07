@@ -18,13 +18,13 @@ public class Desafio {
         //Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior que
         //4 exibirá uma mensagem de erro;
         while (resposta > 0 && resposta <= 4) {
-            resposta = escolhaDeOpcao(cadastros, colunas, resposta);
+            resposta = escolhaDeOpcao(cadastros, colunas);
         }
 
         teclado.close();
     }
 
-    static byte escolhaDeOpcao(String[][] cadastros, String[] colunas, byte resposta){
+    static byte escolhaDeOpcao(String[][] cadastros, String[] colunas){
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
@@ -34,7 +34,7 @@ public class Desafio {
         System.out.println("X                   Atualizar usuário[3]                X");
         System.out.println("X                   Deletar usuário[4]                  X");
 
-        resposta = teclado.nextByte();
+        byte resposta = teclado.nextByte();
 
         switch (resposta) {
             case 1:
