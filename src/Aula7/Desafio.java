@@ -5,45 +5,58 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[][] cadastros = new String[10][4];
-        String[] colunas = {"ID", "Nome", "Email", "Telefone"};
+        String[][] cadastros = new String[10][4];   //Cria uma matriz 10 x 4 para agir como banco de dados;
+        String[] colunas = {"ID", "Nome", "Email", "Telefone"}; //Cria um vetor com os nomes pré prontos de cada seção;
 
+        //Adiciona os nomes na primeira linha;
         for (int i = 0; i < cadastros[0].length; i++) {
             cadastros[0][i] = colunas[i];
         }
 
-        byte res = 0;
+        byte resposta = 1;
 
-        while (res >= 0 && res <= 4) {
-            System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
-                    "(No momento só posso cadastrar até 10 usuários)");
-            System.out.println("X                   Cadastrar[1]                        X");
-            System.out.println("X                   Exibir cadastros[2]                 X");
-            System.out.println("X                   Atualizar usuário[3]                X");
-            System.out.println("X                   Deletar usuário[4]                  X");
-
-            res = teclado.nextByte();
-
-            switch (res) {
-                case 1:
-                    cadastrar(cadastros, colunas);
-                    break;
-
-                case 2:
-                    exibirCadastros(cadastros);
-                    break;
-
-                case 3:
-                    atualizarUsuario(cadastros, colunas);
-                    break;
-
-                case 4:
-                    deletarUsuario(cadastros);
-                    break;
-            }
+        //Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior que
+        //4 exibirá uma mensagem de erro;
+        while (resposta > 0 && resposta <= 4) {
+            resposta = escolhaDeOpcao(cadastros, colunas, resposta);
         }
 
         teclado.close();
+    }
+
+    static byte escolhaDeOpcao(String[][] cadastros, String[] colunas, byte resposta){
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
+                "(No momento só posso cadastrar até 10 usuários), para encerrar, digite zero ou menor.");
+        System.out.println("X                   Cadastrar[1]                        X");
+        System.out.println("X                   Exibir cadastros[2]                 X");
+        System.out.println("X                   Atualizar usuário[3]                X");
+        System.out.println("X                   Deletar usuário[4]                  X");
+
+        resposta = teclado.nextByte();
+
+        switch (resposta) {
+            case 1:
+                cadastrar(cadastros, colunas);
+                break;
+
+            case 2:
+                exibirCadastros(cadastros);
+                break;
+
+            case 3:
+                atualizarUsuario(cadastros, colunas);
+                break;
+
+            case 4:
+                deletarUsuario(cadastros);
+                break;
+
+            default:
+                System.out.println("Numero invalido");
+        }
+        return resposta;
     }
 
     static int localizarNull(String[][] matriz) {
