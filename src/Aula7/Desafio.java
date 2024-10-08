@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[][] cadastros = new String[10][4];   /*Cria uma matriz 10 x 4 para agir como banco de dados*/
+        String[][] cadastros = new String[10][4];               /*Cria uma matriz 10 x 4 para agir como banco de dados*/
         String[] colunas = {"ID", "Nome", "Email", "Telefone"}; /*Cria um vetor com os nomes pré prontos de cada seção*/
 
         /*Adiciona os nomes na primeira linha*/
