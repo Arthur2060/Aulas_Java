@@ -8,11 +8,6 @@ public class Desafio {
         String[][] cadastros = {{"ID", "Nome", "Email", "Telefone"}};/*Cria uma matriz 10 x 4 para agir como banco de dados*/
         String[] colunas = {"ID", "Nome", "Email", "Telefone"}; /*Cria um vetor com os nomes pré prontos de cada seção*/
 
-        /*Adiciona os nomes na primeira linha*/
-        for (int i = 0; i < cadastros[0].length; i++) {
-            cadastros[0][i] = colunas[i];
-        }
-
         byte resposta = 1;
 
         /*Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior
