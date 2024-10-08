@@ -77,11 +77,9 @@ public class Desafio {
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                if (matriz[i][j] != null) {
-                    if (matriz[i][j].equals(info)) {
-                        n = i;
-                        break;
-                    }
+                if (matriz[i][j] != null && matriz[i][j].equals(info)) {
+                    n = i;
+                    break;
                 }
             }
         }
