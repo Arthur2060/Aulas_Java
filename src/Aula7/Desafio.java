@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[][] cadastros = new String[10][4];               /*Cria uma matriz 10 x 4 para agir como banco de dados*/
+        String[][] cadastros = {{"ID", "Nome", "Email", "Telefone"}};/*Cria uma matriz 10 x 4 para agir como banco de dados*/
         String[] colunas = {"ID", "Nome", "Email", "Telefone"}; /*Cria um vetor com os nomes pré prontos de cada seção*/
 
         /*Adiciona os nomes na primeira linha*/
@@ -15,7 +15,8 @@ public class Desafio {
 
         byte resposta = 1;
 
-        /*Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior que 4 exibirá uma mensagem de erro*/
+        /*Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior
+         que 4 exibirá uma mensagem de erro*/
         while (resposta > 0 && resposta <= 4) {
             System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
                     "(No momento só posso cadastrar até 10 usuários), para encerrar, digite zero ou menor.");
@@ -27,11 +28,12 @@ public class Desafio {
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
             resposta = teclado.nextByte();
+            teclado.nextLine();
 
             String info;
             switch (resposta) {
                 case 1:
-                    cadastrar(cadastros, colunas);
+                    cadastros = cadastrar(teclado, colunas, cadastros);
                     break;
                 case 2:
                     exibirCadastros(cadastros);
@@ -46,7 +48,7 @@ public class Desafio {
                     System.out.print("Digite uma informação do usuário para deletar: ");
                     info = teclado.nextLine();
 
-                    deletarUsuario(cadastros, info);
+                    cadastros = deletarUsuario(cadastros, info);
                     break;
                 default:
                     System.out.println("Numero invalido");
@@ -55,14 +57,16 @@ public class Desafio {
 
         teclado.close();
     }
+    static String[][] copiarEmNovaMatriz(Scanner teclado, String[] colunas, String[][] matrizAntiga){
+        String[][] matrizNova = new String[matrizAntiga.length + 1][colunas.length];
 
-    static int localizarNull(String[][] matriz) {
-        for (int linha = 1; linha < matriz.length; linha++) {
-            if (matriz[linha][0] == null) {
-                return linha;
+        for (int linha = 0; linha < matrizAntiga.length; linha++) {
+            for (int coluna = 0; coluna < matrizAntiga[linha].length; coluna++) {
+                matrizNova[linha][coluna] = matrizAntiga[linha][coluna];
             }
         }
-        return 11;
+
+        return matrizNova;
     }
 
     static int localizarUsuario(String[][] matriz,String info){
@@ -80,22 +84,20 @@ public class Desafio {
         return numeroDaLinha;
     }
 
-    static void cadastrar(String[][] matriz, String[] colunas){
-        Scanner teclado = new Scanner(System.in);
-        int linha = localizarNull(matriz);
+    static String[][] cadastrar(Scanner teclado, String[] colunas, String[][] matrizAntiga){
+        String[][] matrizNova = copiarEmNovaMatriz(teclado, colunas, matrizAntiga);
 
-        for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+        for (int coluna = 0; coluna < matrizNova[0].length; coluna++) {
             System.out.print(colunas[coluna] + ": ");
-            matriz[linha][coluna] = teclado.nextLine();
+            matrizNova[matrizNova.length - 1][coluna] = teclado.nextLine();
         }
+
+        return matrizNova;
     }
 
     static void exibirCadastros(String[][] matriz){
         for(String[] linha : matriz){
             for(String item : linha) {
-                if (item == null){
-                    break;
-                }
                 System.out.print(item + "\t");
             }
             System.out.println();
@@ -113,12 +115,19 @@ public class Desafio {
         }
     }
 
-    static void deletarUsuario(String[][] matriz,String info){
-        int linha = localizarUsuario(matriz, info);
-        String nulificar = null;
+    static String[][] deletarUsuario(String[][] matrizAntiga,String info){
+        int linhaAlvo = localizarUsuario(matrizAntiga, info);
 
-        for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-            matriz[linha][coluna] = nulificar;
+        String[][] matrizNova = new String[matrizAntiga.length - 1][4];
+
+        for (int linha = 0; linha < matrizAntiga.length; linha++) {
+            for (int coluna = 0; coluna < matrizAntiga[linha].length; coluna++) {
+                if (linha != linhaAlvo) {
+                    matrizNova[linha][coluna] = matrizAntiga[linha][coluna];
+                }
+            }
         }
+
+        return matrizNova;
     }
 }
