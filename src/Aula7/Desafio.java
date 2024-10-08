@@ -28,6 +28,7 @@ public class Desafio {
 
             resposta = teclado.nextByte();
 
+            String info;
             switch (resposta) {
                 case 1:
                     cadastrar(cadastros, colunas);
@@ -36,10 +37,16 @@ public class Desafio {
                     exibirCadastros(cadastros);
                     break;
                 case 3:
-                    atualizarUsuario(cadastros, colunas);
+                    System.out.print("Digite uma informação do usuário para pesquisar: ");
+                    info = teclado.nextLine();
+
+                    atualizarUsuario(cadastros, colunas, info);
                     break;
                 case 4:
-                    deletarUsuario(cadastros);
+                    System.out.print("Digite uma informação do usuário para deletar: ");
+                    info = teclado.nextLine();
+
+                    deletarUsuario(cadastros, info);
                     break;
                 default:
                     System.out.println("Numero invalido");
@@ -50,40 +57,36 @@ public class Desafio {
     }
 
     static int localizarNull(String[][] matriz) {
-        for (int i = 1; i < matriz.length; i++) {
-            if (matriz[i][0] == null) {
-                return i;
+        for (int linha = 1; linha < matriz.length; linha++) {
+            if (matriz[linha][0] == null) {
+                return linha;
             }
         }
         return 11;
     }
 
-    static int localizarUsuario(String[][] matriz){
-        Scanner teclado = new Scanner(System.in);
-        int n = 0;
+    static int localizarUsuario(String[][] matriz,String info){
+        int numeroDaLinha = 0;
 
-        System.out.print("Digite uma informação do usuário para pesquisar: ");
-        String info = teclado.nextLine();
-
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                if (matriz[i][j] != null && matriz[i][j].equals(info)) {
-                    n = i;
-                    break;
+        for(String[] linha : matriz){
+            for(String item : linha){
+                if (item.equals(info)) {
+                    return numeroDaLinha;
                 }
             }
+            numeroDaLinha++;
         }
 
-        return n;
+        return numeroDaLinha;
     }
 
     static void cadastrar(String[][] matriz, String[] colunas){
         Scanner teclado = new Scanner(System.in);
         int linha = localizarNull(matriz);
 
-        for (int i = 0; i < matriz[linha].length; i++) {
-            System.out.print(colunas[i] + ": ");
-            matriz[linha][i] = teclado.nextLine();
+        for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+            System.out.print(colunas[coluna] + ": ");
+            matriz[linha][coluna] = teclado.nextLine();
         }
     }
 
@@ -99,23 +102,23 @@ public class Desafio {
         }
     }
 
-    static void atualizarUsuario(String[][] matriz, String[] colunas){
+    static void atualizarUsuario(String[][] matriz, String[] colunas,String info){
         Scanner teclado = new Scanner(System.in);
 
-        int linha = localizarUsuario(matriz);
+        int linha = localizarUsuario(matriz, info);
 
-        for (int i = 0; i < matriz[linha].length; i++) {
-            System.out.print("Digite o " + colunas[i] + ": ");
-            matriz[linha][i] = teclado.nextLine();
+        for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+            System.out.print("Digite o " + colunas[coluna] + ": ");
+            matriz[linha][coluna] = teclado.nextLine();
         }
     }
 
-    static void deletarUsuario(String[][] matriz){
-        int linha = localizarUsuario(matriz);
+    static void deletarUsuario(String[][] matriz,String info){
+        int linha = localizarUsuario(matriz, info);
         String nulificar = null;
 
-        for (int i = 0; i < matriz[linha].length; i++) {
-            matriz[linha][i] = nulificar;
+        for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+            matriz[linha][coluna] = nulificar;
         }
     }
 }
