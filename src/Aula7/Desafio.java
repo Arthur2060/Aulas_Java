@@ -107,6 +107,9 @@ public class Desafio {
     static void exibirCadastros(String[][] matriz){
         for(String[] linha : matriz){
             for(String item : linha) {
+                if (item == null){
+                    break;
+                }
                 System.out.print(item + "\t");
             }
             System.out.println();
