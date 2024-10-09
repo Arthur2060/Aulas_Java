@@ -15,19 +15,15 @@ public class Exemplo4 {
 
 
         // Leitura otimizada usando BufferReader
-
         String linha;
-        while (true){
-            try {
-                BufferedReader bufferread = new BufferedReader(new FileReader("exemplo.txt"));
-                if (!((linha = bufferread.readLine()) != null)) break;
+        try {
+            BufferedReader bufferread = new BufferedReader(new FileReader("exemplo.txt"));
+            while ((linha = bufferread.readLine()) != null) {
                 System.out.println(linha); //Lê linha por linha do arquivo
-                bufferread.close();
-            } catch (IOException e) {
-                System.out.println("Error");
-            } finally {
-
             }
+            bufferread.close();
+        } catch (IOException e) {
+            System.out.println("Error");
         }
 
     }
