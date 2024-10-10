@@ -9,8 +9,8 @@ public class Exemplo4 {
             BufferedWriter bufferwrite = new BufferedWriter(new FileWriter("exemplo.txt"));
             bufferwrite.write("Texto a ser gravado no arquivo com buffer.");
             bufferwrite.close();
-        } catch (IOException e) {
-            System.out.println("erro");
+        } catch (Exception e) {
+            throw new RuntimeException();
         }
 
 
@@ -22,8 +22,8 @@ public class Exemplo4 {
                 System.out.println(linha); //Lê linha por linha do arquivo
             }
             bufferread.close();
-        } catch (IOException e) {
-            System.out.println("Error");
+        } catch (Exception e) {
+            throw new RuntimeException();
         }
 
     }
