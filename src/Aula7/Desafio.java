@@ -50,7 +50,7 @@ public class Desafio {
 
         teclado.close();
     }
-    static String[][] copiarEmNovaMatriz(Scanner teclado, String[] colunas, String[][] matrizAntiga){
+    static String[][] copiarEmNovaMatriz(String[] colunas, String[][] matrizAntiga){
         String[][] matrizNova = new String[matrizAntiga.length + 1][colunas.length];
 
         for (int linha = 0; linha < matrizAntiga.length; linha++) {
@@ -78,7 +78,7 @@ public class Desafio {
     }
 
     static String[][] cadastrar(Scanner teclado, String[] colunas, String[][] matrizAntiga){
-        String[][] matrizNova = copiarEmNovaMatriz(teclado, colunas, matrizAntiga);
+        String[][] matrizNova = copiarEmNovaMatriz(colunas, matrizAntiga);
 
         for (int coluna = 0; coluna < matrizNova[0].length; coluna++) {
             System.out.print(colunas[coluna] + ": ");
