@@ -82,12 +82,17 @@ public class Desafio {
     }
 
     static String[][] bancoParaMatriz(File banco){
+        int contador = 0;
         try{
             BufferedReader bReader = new BufferedReader(new FileReader(banco));
-
-        }catch (IOException e){
+            while (bReader.readLine() != null){
+                contador ++;
+            }
+            bReader.close();
+        }catch (IOException e) {
             throw new RuntimeException();
         }
+        String[][] antigoBanco = new String[contador][4];
 
         return antigoBanco;
     }
