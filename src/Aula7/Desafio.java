@@ -5,13 +5,11 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[][] cadastros = {{"ID", "Nome", "Email", "Telefone"}};/*Cria uma matriz 10 x 4 para agir como banco de dados*/
-        String[] colunas = {"ID", "Nome", "Email", "Telefone"}; /*Cria um vetor com os nomes pré prontos de cada seção*/
+        String[][] cadastros = {{"ID", "Nome", "Email", "Telefone"}};
+        String[] colunas = {"ID", "Nome", "Email", "Telefone"};
 
         byte resposta = 1;
 
-        /*Para se encaixar nas opções a resposta deve ser um numero entre 1 e 4, 0 ou menor encerrará o programa, maior
-         que 4 exibirá uma mensagem de erro*/
         while (resposta > 0 && resposta <= 4) {
             System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
                     "(No momento só posso cadastrar até 10 usuários), para encerrar, digite zero ou menor.");
