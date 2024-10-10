@@ -51,7 +51,7 @@ public class Desafio {
         }
     }
 
-    static String[][] copiarEColar(String[][] bancoAntigo,String[][] bancoNovo, String[] colunas){
+    static String[][] copiarEColar(String[][] bancoAntigo,String[][] bancoNovo){
         for (int linha = 0; linha < bancoAntigo.length; linha++) {
             for (int item = 0; item < bancoAntigo[linha].length; item++) {
                 bancoNovo[linha][item] = bancoAntigo[linha][item];
@@ -63,7 +63,7 @@ public class Desafio {
 
     static String[][] cadastrarNovoUsuario(String[][] bancoAntigo, String[] colunas, Scanner teclado){
         String[][] bancoNovo = new String[bancoAntigo.length + 1][4];
-        bancoNovo = copiarEColar(bancoAntigo, bancoNovo, colunas);
+        bancoNovo = copiarEColar(bancoAntigo, bancoNovo);
 
         for (int item = 0; item < bancoNovo[0].length; item++) {
             System.out.print(colunas[item] + ": ");
