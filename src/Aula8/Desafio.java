@@ -6,11 +6,13 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        File Banco = new File("C:\\Users\\Aluno\\Desktop\\Banco de Dados.txt");
+        File Banco = new File("Banco de Dados.txt");
 
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
-        String[][] cadastros = {{colunas[0], colunas[1], colunas[2], colunas[3]}};
-        verificacaoDeExistencia(Banco);
+        String[][] cadastros = new String[1][4];
+        if (verificacaoDeExistencia(Banco)){
+            cadastros = importarBancoExistente(Banco);
+        }
 
         byte controlador = 0;
 
@@ -33,22 +35,56 @@ public class Desafio {
                 case 1:
                     cadastros = cadastrarNovoUsuario(cadastros, colunas, teclado);
                     break;
+
+                case 4:
+                    exibirCadastros(cadastros);
+                    break;
             }
         }
         salvar(Banco, cadastros);
         teclado.close();
     }
 
-    static void verificacaoDeExistencia(File arquivo) {
+    static Boolean verificacaoDeExistencia(File arquivo) {
         try {
             if (arquivo.exists()) {
-                System.out.println("Ok, pronto para funcionar!");
+                System.out.println("Tudo pronto!");
             } else {
                 arquivo.createNewFile();
             }
         } catch (Exception e) {
             throw new RuntimeException();
         }
+        return true;
+    }
+
+    static String[][] importarBancoExistente(File banco){
+        String conteudo = "";
+        try{
+            BufferedReader bReader = new BufferedReader(new FileReader(banco));
+            String controlador;
+            while ((controlador = bReader.readLine()) != null){
+                    conteudo += controlador;
+            }
+            bReader.close();
+        }catch(Exception e) {
+            throw new RuntimeException();
+        }
+        String[] conteudoSeparado = conteudo.split(" ");
+        return converterConteudoEmMatriz(conteudoSeparado);
+    }
+
+    static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
+        String[][] matriz = new String[conteudoSeparado.length / 4][4];
+
+        for(String item : conteudoSeparado){
+            for (int linha = 0; linha < matriz.length; linha++) {
+                for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+                    matriz[linha][coluna] = item;
+                }
+            }
+        }
+        return matriz;
     }
 
     static String[][] copiarEColar(String[][] bancoAntigo,String[][] bancoNovo){
@@ -76,25 +112,9 @@ public class Desafio {
         String usuario = "";
 
         for(String item : linha){
-            usuario += item + "|";
+            usuario += item + " ";
         }
         return usuario;
-    }
-
-    static String[][] bancoParaMatriz(File banco){
-        int contador = 0;
-        try{
-            BufferedReader bReader = new BufferedReader(new FileReader(banco));
-            while (bReader.readLine() != null){
-                contador ++;
-            }
-            bReader.close();
-        }catch (IOException e) {
-            throw new RuntimeException();
-        }
-        String[][] antigoBanco = new String[contador][4];
-
-        return antigoBanco;
     }
 
     static void salvar(File localBanco, String[][] cadastros){
@@ -107,6 +127,15 @@ public class Desafio {
             }catch (Exception e){
                 throw new RuntimeException();
             }
+        }
+    }
+
+    static void exibirCadastros(String[][] cadastros){
+        for (String[] linha : cadastros){
+            for(String item : linha){
+                System.out.print(item);
+            }
+            System.out.println();
         }
     }
 }
