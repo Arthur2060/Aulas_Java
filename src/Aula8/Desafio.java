@@ -10,9 +10,7 @@ public class Desafio {
 
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
         String[][] cadastros = new String[1][4];
-        if (verificacaoDeExistencia(Banco)){
-            cadastros = importarBancoExistente(Banco);
-        }
+        verificacaoDeExistencia(Banco, cadastros);
 
         byte controlador = 0;
 
@@ -36,6 +34,15 @@ public class Desafio {
                     cadastros = cadastrarNovoUsuario(cadastros, colunas, teclado);
                     break;
 
+                case 2:
+
+                    break;
+
+                case 3:
+                    System.out.print("Digite uma informação do usuário que deseja apagar: ");
+                    cadastros = apagarUsuario(cadastros, teclado.nextLine());
+                    break;
+
                 case 4:
                     exibirCadastros(cadastros);
                     break;
@@ -44,18 +51,46 @@ public class Desafio {
         salvar(Banco, cadastros);
         teclado.close();
     }
+    static int detectarLinhaDeUsuario(String[][] cadastros, String info){
+        int linha = 0;
 
-    static Boolean verificacaoDeExistencia(File arquivo) {
+        for (String[] andar : cadastros){
+            for (String item : andar){
+                if (info.equals(item)){
+                    break;
+                }else {
+                    linha++;
+                }
+            }
+        }
+        return linha;
+    }
+
+    static String[][] apagarUsuario(String[][] cadastros, String info){
+        int alvo = detectarLinhaDeUsuario(cadastros, info);
+        String[][] novosCadastros = new String[cadastros.length - 1][4];
+
+        for (int linha = 0; linha < cadastros.length; linha++) {
+            if (linha != alvo){
+                for (int coluna = 0; coluna < cadastros[linha].length; coluna++) {
+                        novosCadastros[linha][coluna] = cadastros[linha][coluna];
+                }
+            }
+        }
+        return novosCadastros;
+    }
+
+    static void verificacaoDeExistencia(File arquivo, String[][] cadastros) {
         try {
             if (arquivo.exists()) {
                 System.out.println("Tudo pronto!");
+                cadastros = importarBancoExistente(arquivo);
             } else {
                 arquivo.createNewFile();
             }
         } catch (Exception e) {
             throw new RuntimeException();
         }
-        return true;
     }
 
     static String[][] importarBancoExistente(File banco){
@@ -76,12 +111,12 @@ public class Desafio {
 
     static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
         String[][] matriz = new String[conteudoSeparado.length / 4][4];
+        int contador = 0;
 
-        for(String item : conteudoSeparado){
-            for (int linha = 0; linha < matriz.length; linha++) {
-                for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-                    matriz[linha][coluna] = item;
-                }
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
+                matriz[linha][coluna] = conteudoSeparado[contador];
+                contador++;
             }
         }
         return matriz;
@@ -93,7 +128,6 @@ public class Desafio {
                 bancoNovo[linha][item] = bancoAntigo[linha][item];
             }
         }
-
         return bancoNovo;
     }
 
@@ -103,7 +137,7 @@ public class Desafio {
 
         for (int item = 0; item < bancoNovo[0].length; item++) {
             System.out.print(colunas[item] + ": ");
-            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine();
+            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + " ";
         }
         return bancoNovo;
     }
@@ -133,7 +167,7 @@ public class Desafio {
     static void exibirCadastros(String[][] cadastros){
         for (String[] linha : cadastros){
             for(String item : linha){
-                System.out.print(item);
+                System.out.print(item + "\t");
             }
             System.out.println();
         }
