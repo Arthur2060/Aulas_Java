@@ -155,7 +155,7 @@ public class Desafio {
         for(String[] linha : cadastros){
             try {
                 String usuario = linhaParaString(linha);
-                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco, true));
+                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco, false));
                 bWriter.write(usuario + "\n");
                 bWriter.close();
             }catch (Exception e){
