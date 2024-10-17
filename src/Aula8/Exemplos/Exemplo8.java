@@ -10,8 +10,8 @@ public class Exemplo8 {
         }
 
         String text = "";
-        for (int i = 0; i < tokens.length; i++) {
-             String Valor = tokens[i].split(":")[1];
+        for (String token : tokens) {
+             String Valor = token.split(":")[1];
              text += Valor + ",";
         }
 
