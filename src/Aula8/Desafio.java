@@ -10,7 +10,7 @@ public class Desafio {
 
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
         String[][] cadastros = new String[1][4];
-        verificacaoDeExistencia(Banco, cadastros);
+        cadastros = importarBancoExistente(Banco);
 
         byte controlador = 0;
 
@@ -84,7 +84,6 @@ public class Desafio {
         try {
             if (arquivo.exists()) {
                 System.out.println("Tudo pronto!");
-                cadastros = importarBancoExistente(arquivo);
             } else {
                 arquivo.createNewFile();
             }
@@ -97,20 +96,29 @@ public class Desafio {
         String conteudo = "";
         try{
             BufferedReader bReader = new BufferedReader(new FileReader(banco));
-            String controlador;
-            while ((controlador = bReader.readLine()) != null){
-                    conteudo += controlador;
+            String linha = "";
+            while ((linha = bReader.readLine()) != null){
+                    conteudo += linha;
             }
             bReader.close();
         }catch(Exception e) {
             throw new RuntimeException();
         }
-        String[] conteudoSeparado = conteudo.split(" ");
-        return converterConteudoEmMatriz(conteudoSeparado);
+        return converterConteudoEmMatriz(conteudo);
     }
 
-    static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
+    static String[][] converterConteudoEmMatriz(String conteudo){
+        String[] conteudoSeparado = conteudo.split(";");
+
         String[][] matriz = new String[conteudoSeparado.length / 4][4];
+
+        int contador = 0;
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int colunas = 0; colunas < matriz[linha].length; colunas++) {
+                matriz[linha][colunas] = conteudoSeparado[contador];
+                contador++;
+            }
+        }
 
 
         return matriz;
@@ -131,7 +139,7 @@ public class Desafio {
 
         for (int item = 0; item < bancoNovo[0].length; item++) {
             System.out.print(colunas[item] + ": ");
-            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + " ";
+            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + ";";
         }
         return bancoNovo;
     }
@@ -140,7 +148,7 @@ public class Desafio {
         String usuario = "";
 
         for(String item : linha){
-            usuario += item + " ";
+            usuario += item;
         }
         return usuario;
     }
@@ -150,7 +158,7 @@ public class Desafio {
             try {
                 String usuario = linhaParaString(linha);
                 BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco, false));
-                bWriter.write(usuario + "\n");
+                bWriter.write(usuario);
                 bWriter.close();
             }catch (Exception e){
                 throw new RuntimeException();
