@@ -111,14 +111,8 @@ public class Desafio {
 
     static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
         String[][] matriz = new String[conteudoSeparado.length / 4][4];
-        int contador = 0;
 
-        for (int linha = 0; linha < matriz.length; linha++) {
-            for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-                matriz[linha][coluna] = conteudoSeparado[contador];
-                contador++;
-            }
-        }
+
         return matriz;
     }
 
