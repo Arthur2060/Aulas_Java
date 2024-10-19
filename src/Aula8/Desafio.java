@@ -9,12 +9,12 @@ public class Desafio {
         File Banco = new File("Banco de Dados.txt");
 
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
-        String[][] cadastros = new String[1][4];
-        verificacaoDeExistencia(Banco, cadastros);
+        String[][] cadastros = {{colunas[0], colunas[1], colunas[2], colunas[3]}};
+        cadastros = verificacaoDeExistencia(Banco, cadastros);
 
         byte controlador = 0;
 
-        while (controlador >= 0 && controlador < 5) {
+        while(controlador >= 0) {
             System.out.println("Bem-vindo ao sistema de cadastro de usuários, agora com um novo banco de dados provisório!" +
                     " O que você quer fazer?");
             System.out.println();
@@ -29,7 +29,7 @@ public class Desafio {
             controlador = teclado.nextByte();
             teclado.nextLine();
 
-            switch (controlador){
+            switch (controlador) {
                 case 1:
                     cadastros = cadastrarNovoUsuario(cadastros, colunas, teclado);
                     break;
@@ -68,7 +68,7 @@ public class Desafio {
 
     static String[][] apagarUsuario(String[][] cadastros, String info){
         int alvo = detectarLinhaDeUsuario(cadastros, info);
-        String[][] novosCadastros = new String[cadastros.length - 1][4];
+        String[][] novosCadastros = new String[cadastros.length][4];
 
         for (int linha = 0; linha < cadastros.length; linha++) {
             if (linha != alvo){
@@ -80,7 +80,7 @@ public class Desafio {
         return novosCadastros;
     }
 
-    static void verificacaoDeExistencia(File arquivo, String[][] cadastros) {
+    static String[][] verificacaoDeExistencia(File arquivo, String[][] cadastros) {
         try {
             if (arquivo.exists()) {
                 System.out.println("Tudo pronto!");
@@ -91,6 +91,7 @@ public class Desafio {
         } catch (Exception e) {
             throw new RuntimeException();
         }
+        return cadastros;
     }
 
     static String[][] importarBancoExistente(File banco){
@@ -105,17 +106,19 @@ public class Desafio {
         }catch(Exception e) {
             throw new RuntimeException();
         }
-        String[] conteudoSeparado = conteudo.split(" ");
-        return converterConteudoEmMatriz(conteudoSeparado);
+        System.out.println(conteudo);
+        return converterConteudoEmMatriz(conteudo);
     }
 
-    static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
-        String[][] matriz = new String[conteudoSeparado.length / 4][4];
-        int contador = 0;
+    static String[][] converterConteudoEmMatriz(String conteudo){
+        String[] conteudoEmVetor = conteudo.split("\n");
+        String[][] matriz = new String[conteudoEmVetor.length][4];
 
+        int contador = 0;
+        
         for (int linha = 0; linha < matriz.length; linha++) {
             for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-                matriz[linha][coluna] = conteudoSeparado[contador];
+                matriz[linha][coluna] = conteudoEmVetor[linha].split(";")[coluna];
                 contador++;
             }
         }
@@ -137,8 +140,9 @@ public class Desafio {
 
         for (int item = 0; item < bancoNovo[0].length; item++) {
             System.out.print(colunas[item] + ": ");
-            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + " ";
+            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + ";";
         }
+
         return bancoNovo;
     }
 
@@ -146,7 +150,7 @@ public class Desafio {
         String usuario = "";
 
         for(String item : linha){
-            usuario += item + " ";
+            usuario += item;
         }
         return usuario;
     }
@@ -155,7 +159,7 @@ public class Desafio {
         for(String[] linha : cadastros){
             try {
                 String usuario = linhaParaString(linha);
-                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco, false));
+                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco));
                 bWriter.write(usuario + "\n");
                 bWriter.close();
             }catch (Exception e){
@@ -167,7 +171,7 @@ public class Desafio {
     static void exibirCadastros(String[][] cadastros){
         for (String[] linha : cadastros){
             for(String item : linha){
-                System.out.print(item + "\t");
+                System.out.print(item + ";");
             }
             System.out.println();
         }
