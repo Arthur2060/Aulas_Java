@@ -8,9 +8,8 @@ public class Desafio {
         Scanner teclado = new Scanner(System.in);
         File Banco = new File("Banco de Dados.txt");
 
-        String[] colunas = {"ID", "Nome", "Email", "Telefone"};
-        String[][] cadastros = new String[1][4];
-        verificacaoDeExistencia(Banco, cadastros);
+        String[][] cadastros = {{"ID;", "Nome;", "Email;", "Telefone]"}};
+        cadastros = verificacaoDeExistencia(Banco, cadastros);
 
         byte controlador = 0;
 
@@ -31,11 +30,12 @@ public class Desafio {
 
             switch (controlador){
                 case 1:
-                    cadastros = cadastrarNovoUsuario(cadastros, colunas, teclado);
+                    cadastros = cadastrarNovoUsuario(cadastros, teclado);
                     break;
 
                 case 2:
-
+                    System.out.print("Digite uma informação do usuário que deseja apagar: ");
+                    cadastros = atualizarUsuario(cadastros, teclado.nextLine(), teclado);
                     break;
 
                 case 3:
@@ -52,18 +52,18 @@ public class Desafio {
         teclado.close();
     }
     static int detectarLinhaDeUsuario(String[][] cadastros, String info){
-        int linha = 0;
+        int alvo = 0;
 
-        for (String[] andar : cadastros){
-            for (String item : andar){
-                if (info.equals(item)){
-                    break;
-                }else {
-                    linha++;
+        for (int linha = 0; linha < cadastros.length; linha++) {
+            for (int coluna = 0; coluna < cadastros[linha].length; coluna++) {
+                if (cadastros[linha][coluna].equals(info + ";") ||
+                        cadastros[linha][coluna].equals(info + "]")){
+                    alvo = linha;
                 }
             }
         }
-        return linha;
+        System.out.println(alvo);
+        return alvo;
     }
 
     static String[][] apagarUsuario(String[][] cadastros, String info){
@@ -80,17 +80,20 @@ public class Desafio {
         return novosCadastros;
     }
 
-    static void verificacaoDeExistencia(File arquivo, String[][] cadastros) {
+    static String[][] verificacaoDeExistencia(File arquivo, String[][] cadastros) {
         try {
             if (arquivo.exists()) {
-                System.out.println("Tudo pronto!");
                 cadastros = importarBancoExistente(arquivo);
+                System.out.println("Tudo pronto!");
             } else {
-                arquivo.createNewFile();
+                if(arquivo.createNewFile()){
+                    System.out.println("Ok, novo arquivo criado.");
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException();
         }
+        return cadastros;
     }
 
     static String[][] importarBancoExistente(File banco){
@@ -105,18 +108,17 @@ public class Desafio {
         }catch(Exception e) {
             throw new RuntimeException();
         }
-        String[] conteudoSeparado = conteudo.split(" ");
+        String[] conteudoSeparado = conteudo.split("]");
         return converterConteudoEmMatriz(conteudoSeparado);
     }
 
     static String[][] converterConteudoEmMatriz(String[] conteudoSeparado){
-        String[][] matriz = new String[conteudoSeparado.length / 4][4];
-        int contador = 0;
+        String[][] matriz = new String[conteudoSeparado.length][4];
 
         for (int linha = 0; linha < matriz.length; linha++) {
             for (int coluna = 0; coluna < matriz[linha].length; coluna++) {
-                matriz[linha][coluna] = conteudoSeparado[contador];
-                contador++;
+                matriz[linha][coluna] = conteudoSeparado[linha].split(";")[coluna]
+                        + ((coluna == matriz[0].length - 1) ? "]" : ";");
             }
         }
         return matriz;
@@ -131,45 +133,61 @@ public class Desafio {
         return bancoNovo;
     }
 
-    static String[][] cadastrarNovoUsuario(String[][] bancoAntigo, String[] colunas, Scanner teclado){
+    static String[][] cadastrarNovoUsuario(String[][] bancoAntigo, Scanner teclado){
         String[][] bancoNovo = new String[bancoAntigo.length + 1][4];
+        String[] colunas = {"ID", "Nome", "Email", "Telefone"};
+
         bancoNovo = copiarEColar(bancoAntigo, bancoNovo);
 
         for (int item = 0; item < bancoNovo[0].length; item++) {
             System.out.print(colunas[item] + ": ");
-            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine() + " ";
+            bancoNovo[bancoNovo.length - 1][item] = teclado.nextLine()
+                    + ((item == bancoNovo[0].length - 1) ? "]" : ";");
         }
         return bancoNovo;
     }
 
-    static String linhaParaString(String[] linha){
+    static String matrizParaString(String[][] matriz){
         String usuario = "";
 
-        for(String item : linha){
-            usuario += item + " ";
+        for (String[] linha : matriz){
+            for (String item : linha){
+                usuario += item;
+            }
+            usuario += "\n";
         }
         return usuario;
     }
 
     static void salvar(File localBanco, String[][] cadastros){
-        for(String[] linha : cadastros){
             try {
-                String usuario = linhaParaString(linha);
-                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco, false));
-                bWriter.write(usuario + "\n");
+                String conteudo = matrizParaString(cadastros);
+                BufferedWriter bWriter = new BufferedWriter(new FileWriter(localBanco));
+                bWriter.write(conteudo);
                 bWriter.close();
             }catch (Exception e){
                 throw new RuntimeException();
             }
-        }
     }
 
     static void exibirCadastros(String[][] cadastros){
         for (String[] linha : cadastros){
             for(String item : linha){
-                System.out.print(item + "\t");
+                System.out.print(item);
             }
             System.out.println();
         }
+    }
+
+    static String[][] atualizarUsuario(String[][] cadastros, String info, Scanner teclado){
+        String[] colunas = {"ID", "Nome", "Email", "Telefone"};
+        int alvo = detectarLinhaDeUsuario(cadastros, info);
+
+        for (int item = 0; item < cadastros[alvo].length; item++) {
+            System.out.print(colunas[item] + ": ");
+            cadastros[alvo][item] = teclado.nextLine()
+                    + ((item == cadastros[0].length - 1) ? "]" : ";");
+        }
+        return cadastros;
     }
 }
