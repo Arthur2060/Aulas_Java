@@ -34,13 +34,11 @@ public class Desafio {
                     break;
 
                 case 2:
-                    System.out.print("Digite uma informação do usuário que deseja apagar: ");
-                    cadastros = atualizarUsuario(cadastros, teclado.nextLine(), teclado);
+                    cadastros = atualizarUsuario(cadastros, teclado);
                     break;
 
                 case 3:
-                    System.out.print("Digite uma informação do usuário que deseja apagar: ");
-                    cadastros = apagarUsuario(cadastros, teclado.nextLine());
+                    cadastros = apagarUsuario(cadastros, teclado);
                     break;
 
                 case 4:
@@ -66,7 +64,10 @@ public class Desafio {
         return alvo;
     }
 
-    static String[][] apagarUsuario(String[][] cadastros, String info){
+    static String[][] apagarUsuario(String[][] cadastros, Scanner teclado){
+        System.out.print("Digite uma informação do usuário que deseja apagar: ");
+        String info = teclado.nextLine();
+
         int alvo = detectarLinhaDeUsuario(cadastros, info);
         String[][] novosCadastros = new String[cadastros.length - 1][4];
 
@@ -179,7 +180,10 @@ public class Desafio {
         }
     }
 
-    static String[][] atualizarUsuario(String[][] cadastros, String info, Scanner teclado){
+    static String[][] atualizarUsuario(String[][] cadastros, Scanner teclado){
+        System.out.print("Digite uma informação do usuário que deseja apagar: ");
+        String info = teclado.nextLine();
+
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
         int alvo = detectarLinhaDeUsuario(cadastros, info);
 
