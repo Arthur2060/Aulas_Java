@@ -16,19 +16,19 @@ public class Exercicio3 {
         try{
             File backup = new File("backup_alunos.txt");
             if(backup.exists()){
-                copiadorDeArquivo(conteudoOriginal);
+                copiadorDeArquivo(conteudoOriginal, backup);
             }else{
                 backup.createNewFile();
-                copiadorDeArquivo(conteudoOriginal);
+                copiadorDeArquivo(conteudoOriginal, backup);
             }
         }catch (Exception e){
             System.out.println("ERROR");
         }
     }
 
-    static void copiadorDeArquivo(String original){
+    static void copiadorDeArquivo(String original, File arquivo){
         try{
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("backup_alunos.txt"));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivo));
             bufferedWriter.write(original);
             bufferedWriter.close();
         }catch (IOException e){
