@@ -22,7 +22,7 @@ public class Exercicio3 {
                 copiadorDeArquivo(conteudoOriginal);
             }
         }catch (Exception e){
-
+            System.out.println("ERROR");
         }
     }
 
