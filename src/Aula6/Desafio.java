@@ -14,9 +14,7 @@ public class Desafio {
 
         String[][] cadastro = new String[resp][4];
 
-        for (int item = 0; item < cadastro[0].length; item++) {
-            cadastro[0][item] = titulos[item];
-        }
+        cadastro[0] = titulos;
 
         for (int i = 1; i < cadastro.length; i++) {
             cadastro[i][0] = Integer.toString(i);
