@@ -4,29 +4,26 @@ import java.io.*;
 
 public class Exercicio3 {
     public static void main(String[] args) {
-        geradorDeBackup();
-        copiadorDeArquivo(leitorDeArquivo());
-    }
+        File arquivo = new File("Alunos.txt");
 
-    static String leitorDeArquivo(){
-        String conteudo = "";
-        try{
-            BufferedReader bufferReader = new BufferedReader(new FileReader("Alunos.txt"));
-            String linha;
-            while ((linha = bufferReader.readLine()) != null){
-                if (linha != null){
-                    conteudo += linha + "\n";
-                }
-            }
-            bufferReader.close();
-        }catch (IOException e){
-            System.out.println("ERROR");
+        if (arquivo.exists()){
+            String conteudoOriginal = Exercicio2.lerArquivo(arquivo);
+            geradorDeBackup(conteudoOriginal);
         }
-        return conteudo;
     }
 
-    static void geradorDeBackup(){
-        new File("backup_alunos.txt");
+    static void geradorDeBackup(String conteudoOriginal){
+        try{
+            File backup = new File("backup_alunos.txt");
+            if(backup.exists()){
+                copiadorDeArquivo(conteudoOriginal);
+            }else{
+                backup.createNewFile();
+                copiadorDeArquivo(conteudoOriginal);
+            }
+        }catch (Exception e){
+
+        }
     }
 
     static void copiadorDeArquivo(String original){

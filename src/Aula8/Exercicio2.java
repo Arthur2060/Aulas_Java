@@ -1,24 +1,32 @@
 package Aula8;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Exercicio2 {
-    public static void main(String[] args) {
-        leitorDeArquivo();
-    }
-    public static void leitorDeArquivo(){
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("Alunos.txt"));
+    public static void main(String[] args){
+        File arquivo = new File("Alunos.txt");
 
+        if (arquivo.exists()){
+            System.out.println(lerArquivo(arquivo));
+        }
+    }
+
+    public static String lerArquivo(File arquivo){
+        String conteudo = "";
+
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(arquivo));
             String linha;
             while((linha = bufferedReader.readLine()) != null){
-                System.out.println(linha);
+                conteudo += linha + "\n";
             }
             bufferedReader.close();
         }catch (IOException e){
             System.out.println("ERROR");
         }
+        return conteudo;
     }
 }

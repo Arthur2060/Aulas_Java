@@ -9,21 +9,21 @@ public class Exercicio1 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
 
-        criarArquivo("Alunos");
+        File arquivo = criarArquivo("Alunos");
         String nome;
 
-        for (int contador = 0; contador < 3; contador++) {
+        for (int contador = 0; contador < 5; contador++) {
             System.out.print("Digite o nome de um aluno: ");
             nome = teclado.nextLine();
-            alterarArquivo(nome, "Alunos.txt");
+            alterarArquivo(nome, arquivo);
         }
     }
 
-    public static void criarArquivo(String nome){
-        new File(nome + ".txt");
+    public static File criarArquivo(String nome){
+        return new File(nome + ".txt");
     }
 
-    public static void alterarArquivo(String frase, String arquivo){
+    public static void alterarArquivo(String frase, File arquivo){
         try{
             FileWriter writer = new FileWriter(arquivo, true);
             writer.write(frase + "\n");
