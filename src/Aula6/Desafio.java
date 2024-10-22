@@ -8,28 +8,28 @@ public class Desafio {
         String[] titulos = {"ID", "Nome", "Email", "Telefone"};
         int resp;
 
-        System.out.println("Quantas pessoas você que cadastrar?");
+        System.out.println("Quantas pessoas você quer cadastrar?");
         resp = teclado.nextInt() + 1;
         teclado.nextLine();
 
         String[][] cadastro = new String[resp][4];
 
-        cadastro[0][0] = "ID";
-        cadastro[0][1] = "Nome";
-        cadastro[0][2] = "Email";
-        cadastro[0][3] = "Telefone";
+        for (int item = 0; item < cadastro[0].length; item++) {
+            cadastro[0][item] = titulos[item];
+        }
 
         for (int i = 1; i < cadastro.length; i++) {
-            for (int j = 0; j < cadastro[i].length; j++) {
+            cadastro[i][0] = Integer.toString(i);
+            for (int j = 1; j < cadastro[i].length; j++) {
                 System.out.print(titulos[j] + ": ");
                 cadastro[i][j] = teclado.nextLine();
             }
             System.out.println("-----------------------------");
         }
 
-        for (int i = 0; i < cadastro.length; i++) {
-            for (int j = 0; j < cadastro[i].length; j++) {
-                System.out.print(cadastro[i][j] + "\t");
+        for(String[] linha : cadastro){
+            for (String item : linha){
+                System.out.print(item + "\t\t");
             }
             System.out.println();
         }
