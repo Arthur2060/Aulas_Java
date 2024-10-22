@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Desafio {
     public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
         String[] titulos = {"ID", "Nome", "Email", "Telefone"};
         int resp;
 
@@ -15,7 +16,7 @@ public class Desafio {
 
         cadastro[0] = titulos;
 
-        Scanner teclado = new Scanner(System.in);
+
         for (int i = 1; i < cadastro.length; i++) {
             cadastro[i][0] = Integer.toString(i);
             for (int j = 1; j < cadastro[i].length; j++) {
