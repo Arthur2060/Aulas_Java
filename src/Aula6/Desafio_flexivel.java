@@ -2,17 +2,17 @@ package Aula6;
 
 import java.util.Scanner;
 
-public class Desafio {
+public class Desafio_flexivel {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[] titulos = {"ID", "Nome", "Email", "Telefone"};
+        String[] titulos = {"ID", "Nome", "Email", "Telefone", "RG"};
         int resp;
 
         System.out.println("Quantas pessoas você quer cadastrar?");
         resp = teclado.nextInt() + 1;
         teclado.nextLine();
 
-        String[][] cadastro = new String[resp][4];
+        String[][] cadastro = new String[resp][titulos.length];
 
         cadastro[0] = titulos;
 
@@ -28,11 +28,9 @@ public class Desafio {
 
         for(String[] linha : cadastro){
             for (String item : linha){
-                System.out.print(item + "\t\t\t");
+                System.out.print(item + "\t");
             }
             System.out.println();
         }
-
-
     }
 }
