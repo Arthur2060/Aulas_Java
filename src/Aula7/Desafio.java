@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class Desafio {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String[][] cadastros = {{"ID", "Nome", "Email", "Telefone"}};
         String[] colunas = {"ID", "Nome", "Email", "Telefone"};
+        String[][] cadastros = {null};
+        cadastros[0] = colunas;
 
         byte resposta = 1;
 
@@ -14,10 +15,10 @@ public class Desafio {
             System.out.println("Bem-vindo ao meu sistema de cadastros, o que quer fazer? " +
                     "(No momento só posso cadastrar até 10 usuários), para encerrar, digite zero ou menor.");
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            System.out.println("X                   Cadastrar[1]                        X");
-            System.out.println("X                   Exibir cadastros[2]                 X");
-            System.out.println("X                   Atualizar usuário[3]                X");
-            System.out.println("X                   Deletar usuário[4]                  X");
+            System.out.println("X      X     X      Cadastrar[1]            X     X     X");
+            System.out.println("XXXXXXXX     XXXXXXXExibir cadastros[2]xxxxxX     XXXXXXX");
+            System.out.println("X      X     X      Atualizar usuário[3]    X     X     X");
+            System.out.println("X      X     X      Deletar usuário[4]      X     X     X");
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
             resposta = teclado.nextByte();
@@ -111,7 +112,7 @@ public class Desafio {
     static String[][] deletarUsuario(String[][] matrizAntiga,String info){
         int linhaAlvo = localizarUsuario(matrizAntiga, info);
 
-        String[][] matrizNova = new String[matrizAntiga.length - 1][4];
+        String[][] matrizNova = new String[matrizAntiga.length - 1][matrizAntiga[0].length];
 
         for (int linha = 0; linha < matrizAntiga.length; linha++) {
             for (int coluna = 0; coluna < matrizAntiga[linha].length; coluna++) {
